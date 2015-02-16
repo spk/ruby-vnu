@@ -1,0 +1,16 @@
+language: ruby
+cache: bundler
+rvm:
+  - 2.0.0
+  - 2.1.0
+  - 2.2.0
+
+# https://github.com/gildegoma/travis-ci-inspector/blob/jdk8/.travis.yml
+before_install: java -version
+install:
+  - sudo add-apt-repository -y ppa:webupd8team/java
+  - sudo apt-get update -qq
+  - sudo /bin/echo -e oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+  - sudo apt-get install -y oracle-java8-installer
+before_script: sudo update-java-alternatives -s java-8-oracle
+script: bundle install && bundle exec rake
