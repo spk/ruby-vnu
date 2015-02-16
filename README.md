@@ -2,7 +2,7 @@
 
 ## Description
 
-Ruby wrapper for [vnu](https://validator.github.io/validator/)
+Ruby wrapper for Nu HTML validator (https://validator.github.io/validator/)
 
 ## Installation
 
