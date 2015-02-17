@@ -1,6 +1,6 @@
-# Ruby wrapper for [vnu](https://validator.github.io/validator/)
 require 'open3'
 
+# Ruby wrapper for [vnu](https://validator.github.io/validator/)
 class Vnu
   JAR_PATH = File.expand_path('../../vnu.jar', __FILE__)
 
@@ -51,7 +51,7 @@ class Vnu
 
   def execute(command)
     @output = @error = @exit_status = nil
-    Open3::popen3(command) do |stdin, stdout, stderr, wait_thr|
+    Open3.popen3(command) do |stdin, stdout, stderr, wait_thr|
       stdin.puts target
       stdin.close
       @output = stdout.read.chomp

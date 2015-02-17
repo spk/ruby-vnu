@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.email = 'laurent@spkdev.net'
   s.homepage = "http://github.com/spk/#{s.name}"
   s.platform = Gem::Platform::RUBY
-  s.required_ruby_version = ">= 2.0.0"
+  s.required_ruby_version = '>= 2.0.0'
   s.summary = 'Ruby wrapper for Nu HTML validator'
   s.version = '0.0.1'
   s.license = 'MIT'

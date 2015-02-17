@@ -11,7 +11,7 @@ describe Vnu do
 
   describe 'options' do
     it 'fail' do
-      lambda { Vnu.new }.must_raise RuntimeError
+      -> { Vnu.new }.must_raise RuntimeError
     end
 
     it 'initialze stdin option' do
@@ -21,9 +21,9 @@ describe Vnu do
 
     it 'initialze vnu options' do
       stdin = '<!doctype html><title>'
-      Vnu.new(stdin, errors_only: true, no_stream: true,
-                  format: 'json', html: true, verbose: true).command.
-                 must_equal "#{Vnu.cli} --errors-only --no-stream --format json --html --verbose -"
+      options = { errors_only: true, no_stream: true, format: 'json', html: true, verbose: true }
+      Vnu.new(stdin, options).command
+        .must_equal "#{Vnu.cli} --errors-only --no-stream --format json --html --verbose -"
     end
   end
 
