@@ -28,6 +28,13 @@ describe Vnu do
   end
 
   describe 'validate' do
+    describe 'success' do
+      it 'have no output' do
+        stdin = '<!DOCTYPE html><html><head><title>Test</title></head></html>'
+        Vnu.validate(stdin).must_equal nil
+      end
+    end
+
     describe 'fail' do
       it 'output default' do
         stdin = '<!DOCTYPE html><html><head><title>Test</title></head><body><ul><li id="1"></li><li id="1"></li></ul></body></html>'
