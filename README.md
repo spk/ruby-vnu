@@ -25,6 +25,12 @@ require 'vnu'
 Vnu.validate('<!doctype html><title>', errors_only: true, format: 'json')
 ~~~
 
+## Tests
+
+~~~
+bundle exec rake
+~~~
+
 ## License
 
 The MIT License

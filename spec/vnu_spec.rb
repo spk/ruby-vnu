@@ -21,9 +21,11 @@ describe Vnu do
 
     it 'initialze vnu options' do
       stdin = '<!doctype html><title>'
-      options = { errors_only: true, no_stream: true, format: 'json', html: true, verbose: true }
+      options = { errors_only: true, no_stream: true, format: 'json',
+                  html: true, verbose: true }
       Vnu.new(stdin, options).command
-        .must_equal "#{Vnu.cli} --errors-only --no-stream --format json --html --verbose -"
+        .must_equal %(#{Vnu.cli} --errors-only --no-stream --format json \
+--html --verbose -)
     end
   end
 
@@ -37,14 +39,20 @@ describe Vnu do
 
     describe 'fail' do
       it 'output default' do
-        stdin = '<!DOCTYPE html><html><head><title>Test</title></head><body><ul><li id="1"></li><li id="1"></li></ul></body></html>'
+        stdin = %(<!DOCTYPE html><html><head><title>Test</title></head><body>\
+<ul><li id="1"></li><li id="1"></li></ul></body></html>)
         Vnu.validate(stdin).must_equal %(:1.90-1.90: error: Duplicate ID “1”.
 :1.74-1.74: info warning: The first occurrence of ID “1” was here.)
       end
 
       it 'output json' do
         stdin = '<!doctype html><title>'
-        Vnu.validate(stdin, errors_only: true, format: 'json').must_equal "{\"messages\":[{\"type\":\"error\",\"lastLine\":1,\"lastColumn\":23,\"message\":\"End of file seen when expecting text or an end tag.\"},{\"type\":\"error\",\"lastLine\":1,\"lastColumn\":22,\"message\":\"Unclosed element “title”.\"}]}"
+        Vnu.validate(stdin, errors_only: true, format: 'json')
+          .must_equal %({\"messages\":[{\"type\":\"error\",\"lastLine\":1,\
+\"lastColumn\":23,\
+\"message\":\"End of file seen when expecting text or an end tag.\"},\
+{\"type\":\"error\",\"lastLine\":1,\"lastColumn\":22,\
+\"message\":\"Unclosed element “title”.\"}]})
       end
     end
   end
