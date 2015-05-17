@@ -22,6 +22,9 @@ gem install ruby-vnu
 
 ~~~ ruby
 require 'vnu'
+
+Vnu.cli # => "java -jar GEMHOME/ruby-vnu/vnu.jar"
+Vnu.cli = "java -Xss512k -jar #{Vnu::JAR_PATH}"
 Vnu.validate('<!doctype html><title>', errors_only: true, format: 'json')
 ~~~
 
