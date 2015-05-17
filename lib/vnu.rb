@@ -4,6 +4,20 @@ require 'open3'
 class Vnu
   JAR_PATH = File.expand_path('../../vnu.jar', __FILE__)
 
+  @cli = "java -jar #{JAR_PATH}"
+
+  class << self
+    attr_accessor :cli
+
+    def cli_version
+      @cli_version ||= `#{cli} --version`.chomp
+    end
+
+    def validate(*options)
+      new(*options).validate
+    end
+  end
+
   attr_reader :command, :target
 
   def initialize(*options)
@@ -22,20 +36,6 @@ class Vnu
 
   def validate
     execute(command)
-  end
-
-  class << self
-    def cli
-      @cli ||= "java -jar #{JAR_PATH}"
-    end
-
-    def cli_version
-      @cli_version ||= `#{cli} --version`.chomp
-    end
-
-    def validate(*options)
-      new(*options).validate
-    end
   end
 
   private

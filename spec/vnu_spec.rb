@@ -5,6 +5,14 @@ describe Vnu do
     Vnu.cli.must_equal "java -jar #{Vnu::JAR_PATH}"
   end
 
+  it 'can change cli' do
+    Vnu.cli.tap do |c|
+      Vnu.cli = "java -Xss512k -jar #{Vnu::JAR_PATH}"
+      Vnu.cli.must_equal "java -Xss512k -jar #{Vnu::JAR_PATH}"
+      Vnu.cli = c
+    end
+  end
+
   it 'return cli version' do
     Vnu.cli_version.must_match(/^(\d){8}$/)
   end
