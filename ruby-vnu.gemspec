@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.summary = 'Ruby wrapper for Nu HTML validator'
   s.version = '0.0.1'
   s.license = 'MIT'
-  s.add_development_dependency('rake', '~> 10.3')
+  s.add_development_dependency('rake', '~> 12.3')
   s.add_development_dependency('minitest', '~> 5.4')
   s.add_development_dependency('pry', '~> 0.9')
   s.require_path = 'lib'

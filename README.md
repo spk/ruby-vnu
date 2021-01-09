@@ -8,31 +8,31 @@ Ruby wrapper for Nu HTML validator (https://validator.github.io/validator/)
 
 ### Debian
 
-~~~
+```
 aptitude install openjdk-8-jre-headless
-~~~
+```
 
 ### RubyGems
 
-~~~
+```
 gem install ruby-vnu
-~~~
+```
 
 ## Usage
 
-~~~ ruby
+``` ruby
 require 'vnu'
 
 Vnu.cli # => "java -jar GEMHOME/ruby-vnu/vnu.jar"
 Vnu.cli = "java -Xss512k -jar #{Vnu::JAR_PATH}"
 Vnu.validate('<!doctype html><title>', errors_only: true, format: 'json')
-~~~
+```
 
 ## Tests
 
-~~~
+```
 bundle exec rake
-~~~
+```
 
 ## License
 
